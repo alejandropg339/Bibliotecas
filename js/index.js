@@ -59,6 +59,15 @@ async function listFolders(){
    const respuestaHTTP = await fetch('http://localhost/bibliotecas/server/query-folder.php');
    const result = await respuestaHTTP.json(); 
 
+    const folderList = document.querySelector('#folder-list');
+    for(let i=0; i<result.length; i++){
+        let li = document.createElement('li');
+        let link = document.createElement('a');
+        link.setAttribute('href','#');
+        link.innerHTML = result[i].nombre;
+        folderList.appendChild(li).appendChild(link);
+    }
+
    console.log(result);
    
 }
