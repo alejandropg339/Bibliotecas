@@ -60,17 +60,52 @@ async function listFolders(){
    const result = await respuestaHTTP.json(); 
 
     const folderList = document.querySelector('#folder-list');
+
+    const cantFolders = result.length;
+
+    let listArray = [];
+
     for(let i=0; i<result.length; i++){
         let li = document.createElement('li');
         let link = document.createElement('a');
         link.setAttribute('href','#');
+        link.setAttribute('id',`folder${result[i].id}`);
         link.innerHTML = result[i].nombre;
         folderList.appendChild(li).appendChild(link);
+        listArray.push(result[i].id);
     }
 
+
+
    console.log(result);
+   documents(listArray);
    
 }
+
+function documents(listArray){
+    for (let i = 0 ; i<listArray.length ; i++) {
+        const item = document.querySelector(`#folder${listArray[i]}`);
+        item.addEventListener('click', e=>{
+            e.preventDefault();
+            let id  = listArray[i];
+            searchDocuments(id);
+        });
+    }
+}
+
+async function searchDocuments(id){
+    const transforId = "id="+id;
+    const respuestaHTTP = await fetch('http://localhost/bibliotecas/server/query-document.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: transforId
+    });
+
+    const result = await respuestaHTTP.json();
+    console.log(result);
+} 
+
+
 
 folder();
 listFolders();

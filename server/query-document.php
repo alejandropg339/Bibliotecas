@@ -2,7 +2,7 @@
     header("Acces-Control-Allow-Origin: *");
     include('conection.php');
 
-    $carpeta=$_POST['carpeta'];
+    $carpeta=$_POST['id'];
 
     $insertQuery = "SELECT * FROM archivo where carpeta='$carpeta'";
     $result = mysqli_query($conection, $insertQuery);
