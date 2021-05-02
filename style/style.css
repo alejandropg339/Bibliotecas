@@ -1,0 +1,39 @@
+body{
+background:rgb(148, 203, 255);
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+.cont{
+    border-radius: 12px;
+    height: 600px;
+}
+.folders{
+    border: solid 1px #eee;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.docs{
+    border: solid 1px #eee;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.buttons{
+    border-radius: 6px;
+}
+
+.tbody{
+    font-weight: 400;
+}
+
+.visible{
+    display: none;
+}
