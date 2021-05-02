@@ -52,7 +52,10 @@ async function createFolder(postData){
     
     const result  = await respuestaHTTP.text();
 
-    //console.log(result);
+    let folderList = document.querySelector('#folder-list');
+    folderList.innerHTML ="";
+    listFolders();
+
 }
 
 async function listFolders(){
@@ -77,7 +80,7 @@ async function listFolders(){
 
 
 
-   console.log(result);
+   //console.log(result);
    documents(listArray);
    
 }
@@ -102,8 +105,40 @@ async function searchDocuments(id){
     });
 
     const result = await respuestaHTTP.json();
+    
+    const docs = document.querySelector('#docs-table');
+    
+    for(let i=0; i<result.length; i++){
+       /* let tr = document.createElement('tr');
+        let th = document.createElement('th');
+        let th2 = document.createElement('th');
+        let th3 = document.createElement('th');
+        th.innerHTML = result[i].nombre;
+        th2.innerHTML = result[i].tipo;
+        th3.innerHTML = result[i].fecha;
+        docs.appendChild(tr).appendChild(th, th2, th3);*/
+
+        let template = '';
+
+        result.forEach(doc =>{
+            template += `
+            <tr>
+            <th><a href="#" class="tbody">${doc.nombre}</a></th>
+            <th class="tbody">
+                ${doc.tipo}
+            </th>
+            <th class="tbody">${doc.fecha}</th>
+            <th><button class="btn btn-danger task-delete">Delete</button></th>
+        </tr>`
+        });
+
+        docs.innerHTML = template;
+        console.log(template);
+    }
+
     console.log(result);
 } 
+
 
 
 
