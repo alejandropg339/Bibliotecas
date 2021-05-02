@@ -2,8 +2,6 @@
     header("Acces-Control-Allow-Origin: *");
     include('conection.php');
 
-    if(isset($_POST['nombre'])){
-
     $nombre =$_POST['nombre'];
 
     $insertQuery = "INSERT INTO carpeta (nombre) values('$nombre')";
@@ -11,6 +9,6 @@
     if($result){
         echo "Creacion exitosa";
     }
-}
+
     mysqli_close($conection);
 ?>
