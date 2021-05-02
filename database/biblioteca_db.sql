@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2021 a las 21:11:56
+-- Tiempo de generación: 03-05-2021 a las 00:25:16
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -30,9 +30,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `archivo` (
   `id` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
-  `url` varchar(45) NOT NULL,
+  `contenido` varchar(2000) NOT NULL,
+  `tipo` varchar(45) NOT NULL,
+  `fecha` date NOT NULL,
   `carpeta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `archivo`
+--
+
+INSERT INTO `archivo` (`id`, `nombre`, `contenido`, `tipo`, `fecha`, `carpeta`) VALUES
+(6, 'prueba_documento', 'Habia_una_vez_una_iguana', 'Docuemtno de texto', '2021-02-02', 3);
 
 -- --------------------------------------------------------
 
@@ -77,7 +86,7 @@ ALTER TABLE `carpeta`
 -- AUTO_INCREMENT de la tabla `archivo`
 --
 ALTER TABLE `archivo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `carpeta`
