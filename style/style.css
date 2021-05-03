@@ -18,12 +18,14 @@ ul{
     border: solid 1px #eee;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
+    height: 600px;
 }
 
 .docs{
     border: solid 1px #eee;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
+    height: 600px;
 }
 
 .buttons{
@@ -36,4 +38,8 @@ ul{
 
 .visible{
     display: none;
+}
+
+.text-area{
+    border: none;
 }

@@ -8,7 +8,7 @@
     $fecha =$_POST['fecha'];
     $carpeta =$_POST['carpeta'];
 
-    $insertQuery = "INSERT INTO archivo (nombre, contenido, tipo, fecha, carpeta) values('$nombre', '$contenido', '$tipo', '$fecha','$carpeta')";
+    $insertQuery = "INSERT INTO archivo (nombre, contenido, tipo, fecha, carpeta) values('$nombre', '$contenido', '$tipo', NOW() ,'$carpeta')";
     $result = mysqli_query($conection, $insertQuery);
     if($result){
         echo "Creacion exitosa";

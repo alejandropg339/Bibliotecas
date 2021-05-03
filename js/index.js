@@ -80,7 +80,7 @@ async function listFolders(){
 
 
 
-   //console.log(result);
+   console.log(result);
    documents(listArray);
    
 }
@@ -92,6 +92,7 @@ function documents(listArray){
             e.preventDefault();
             let id  = listArray[i];
             searchDocuments(id);
+            createDoc(id);
         });
     }
 }
@@ -122,13 +123,14 @@ async function searchDocuments(id){
 
         result.forEach(doc =>{
             template += `
-            <tr>
+            <tr TaskId="${doc.id}">
             <th><a href="#" class="tbody">${doc.nombre}</a></th>
             <th class="tbody">
                 ${doc.tipo}
             </th>
             <th class="tbody">${doc.fecha}</th>
             <th><button class="btn btn-danger task-delete">Delete</button></th>
+            <th><button class="btn btn-success task-show">Show</button></th>
         </tr>`
         });
 
@@ -137,10 +139,106 @@ async function searchDocuments(id){
     }
 
     console.log(result);
+    deleteDocument(id);
+    content(id);
 } 
+
+function deleteDocument(id){
+    const botonEliminar = document.querySelectorAll('.task-delete');
+
+    for(let i = 0; i < botonEliminar.length; i++){
+        botonEliminar[i].addEventListener('click',e=>{
+            if(confirm('Are you sure you want to delete it?')){
+            console.log("Putas mamadas las tuyas wey este es el boton "+[i]);
+            //const pruebita =botonEliminar[i].parentElement.parentElement.querySelector('.task-id');
+            const idDelete = botonEliminar[i].parentElement.parentElement.getAttribute('TaskId');
+            console.log(idDelete);
+
+            removeTask(idDelete);
+            searchDocuments(id);
+        }});
+    }
+}
+
+async function removeTask(idDelete) {
+    const transformId = "id="+idDelete;
+    const respuestaHTTP = await fetch('http://localhost/bibliotecas/server/delete-document.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: transformId
+    });
+
+    const result = await respuestaHTTP.text();
+    console.log(result);
+}
+
+
+function createDoc(id){
+    let formFolder =  document.querySelector('#form-document');
+    let documentName = document.querySelector('#documentName');
+    let documentCreate = document.querySelector('#documentCreate');
+    let documentText = document.querySelector('#documentText');
+
+    documentCreate.addEventListener('click',e =>{
+        e.preventDefault();
+        const postData ={
+            nombre: documentName.value,
+            id: id,
+            contenido: documentText.value 
+        }
+        createDocument(postData);
+        searchDocuments(id);
+        console.log("nombre: "+postData.nombre," id: "+postData.id);
+    });
+}
+
+
+async function createDocument(postData){
+    const formdata = new FormData();
+    formdata.append('nombre', postData.nombre);
+    formdata.append('carpeta', postData.id);
+    formdata.append('contenido', postData.contenido);
+    const respuestaHTTP = await fetch('http://localhost/bibliotecas/server/create-document.php',{
+        method: 'POST',
+        body: formdata
+    });
+}
+
+function content(id){
+    const botonMostrar = document.querySelectorAll('.task-show');
+
+    for(let i = 0; i < botonMostrar.length; i++){
+        botonMostrar[i].addEventListener('click',e=>{
+            const idShow = botonMostrar[i].parentElement.parentElement.getAttribute('TaskId');
+            console.log(idShow);
+
+            showContet(idShow);
+        });
+    }
+}
+
+async function showContet(idShow) {
+    let textArea = document.querySelector('#textAera');
+    const transformId = "id="+idShow;
+    const respuestaHTTP = await fetch('http://localhost/bibliotecas/server/query-content-document.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: transformId
+    });
+
+    const result = await respuestaHTTP.json();
+    //
+    
+    const probemos = result[0].contenido;
+    console.log(probemos);
+      textArea.value = await probemos;
+}
+
+
 
 
 
 
 folder();
 listFolders();
+
