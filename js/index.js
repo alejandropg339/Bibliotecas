@@ -30,17 +30,6 @@ function folder() {
 }
 
 
-/*folderName.addEventListener('input', e =>{
-   let folder = e.target.value;
-
-   folderCreate.addEventListener('click',e =>{
-       e.preventDefault();
-    createFolder(folder);
-   });
-   
-});*/
-
-
 
 async function createFolder(postData) {
     const formData = new FormData();
@@ -191,6 +180,7 @@ function deleteDocument(id) {
 
                 removeTask(idDelete);
                 searchDocuments(id);
+                searchDocuments(id);
             }
         });
     }
@@ -227,8 +217,8 @@ function createDoc() {
         }
         createDocument(postData);
         searchDocuments(postData.id);
-        searchDocuments(postData.id);
         formFolder.reset();
+        searchDocuments(postData.id);
         console.log(postData.id);
     });
 }
@@ -244,6 +234,7 @@ async function createDocument(postData) {
             method: 'POST',
             body: formdata
         });
+        searchDocuments(postData.id);
     } else {
         const formdata = new FormData();
         formdata.append('nombre', postData.nombre);
@@ -255,6 +246,7 @@ async function createDocument(postData) {
             body: formdata
         });
         idVacio();
+        searchDocuments(postData.id);
     }
 
 }

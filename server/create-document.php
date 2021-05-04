@@ -11,7 +11,7 @@
         $carpeta =$_POST['carpeta'];
         $id = $_POST['id'];
 
-        $update = "UPDATE archivo SET contenido = '$contenido' WHERE archivo.id = '$id'";
+        $update = "UPDATE archivo SET contenido = '$contenido', nombre = '$nombre' WHERE archivo.id = '$id'";
 
         $result = mysqli_query($conection, $update);
 
