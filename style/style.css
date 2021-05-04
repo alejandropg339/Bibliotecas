@@ -41,5 +41,14 @@ ul{
 }
 
 .text-area{
-    border: none;
+    display: inline-block;
+}
+
+.contain-button-update{
+    text-align: center;
+}
+
+.img-folder{
+    max-width: 20px;
+    margin-left: 7px;
 }
