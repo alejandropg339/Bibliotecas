@@ -40,11 +40,13 @@ async function createFolder(postData) {
     })
 
     const result = await respuestaHTTP.text();
+    console.log(result);
 
     let folderList = document.querySelector('#folder-list');
     folderList.innerHTML = "";
     listFolders();
 
+    return result;
 }
 
 async function listFolders() {
@@ -67,8 +69,6 @@ async function listFolders() {
         img.setAttribute('class', 'img-folder');
         link.setAttribute('id', `folder${result[i].id}`);
 
-        //let img = `<img  class="img-folder" src="images/Folder-icon-256.png">`
-        //link.innerHTML = img;
         link.innerHTML = result[i].nombre;
         folderList.appendChild(li).appendChild(link).append(img);
         listArray.push(result[i].id);
@@ -90,13 +90,7 @@ function documents(listArray) {
         item.addEventListener('click', e => {
             e.preventDefault();
             let id = listArray[i];
-            /*if(listArray.length>1){
-                createDoc(lastId);
-            }else{
-                createDoc(id);
-            }*/
 
-            //console.log(listArray[i]);
             if (arratyTest.length < 1) {
                 arratyTest.push(listArray[i]);
                 let lastId = arratyTest[arratyTest.length - 1];
@@ -107,14 +101,6 @@ function documents(listArray) {
                 let lastId = arratyTest[arratyTest.length - 1];
                 console.log(lastId);
             }
-            /*arratyTest.push(listArray[i]);
-            let lastId = arratyTest[arratyTest.length - 1];*/
-            //console.log(lastId);
-            //console.log(listArray)
-            //console.log(arratyTest);
-            //console.log(lastId);
-            //createDoc(lastId);
-            //searchDocuments(id);
             searchDocuments(id);
         });
     }
@@ -134,14 +120,6 @@ async function searchDocuments(id) {
     const docs = document.querySelector('#docs-table');
 
     for (let i = 0; i < result.length; i++) {
-        /* let tr = document.createElement('tr');
-         let th = document.createElement('th');
-         let th2 = document.createElement('th');
-         let th3 = document.createElement('th');
-         th.innerHTML = result[i].nombre;
-         th2.innerHTML = result[i].tipo;
-         th3.innerHTML = result[i].fecha;
-         docs.appendChild(tr).appendChild(th, th2, th3);*/
 
         let template = '';
 
@@ -173,8 +151,7 @@ function deleteDocument(id) {
     for (let i = 0; i < botonEliminar.length; i++) {
         botonEliminar[i].addEventListener('click', e => {
             if (confirm('Are you sure you want to delete it?')) {
-                //console.log("Putas mamadas las tuyas wey este es el boton "+[i]);
-                //const pruebita =botonEliminar[i].parentElement.parentElement.querySelector('.task-id');
+
                 const idDelete = botonEliminar[i].parentElement.parentElement.getAttribute('TaskId');
                 //console.log(idDelete);
 
@@ -265,8 +242,6 @@ function content(id) {
 
             showContet(idShow);
             arrayDocument.push(idShow);
-
-            //textAreaVisible.classList.remove('visible');
 
         });
     }

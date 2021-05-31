@@ -1,0 +1,23 @@
+{
+  "name": "bibliotecas",
+  "version": "1.0.0",
+  "description": "Ejercicio de simulacion de un gestor de archivos",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alejandropg339/Bibliotecas.git"
+  },
+  "author": "Alejandro Padilla <alejandropg339@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alejandropg339/Bibliotecas/issues"
+  },
+  "homepage": "https://github.com/alejandropg339/Bibliotecas#readme",
+  "devDependencies": {
+    "jest": "^27.0.3",
+    "node-fetch": "^2.6.1"
+  }
+}
