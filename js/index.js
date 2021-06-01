@@ -211,6 +211,8 @@ async function createDocument(postData) {
             method: 'POST',
             body: formdata
         });
+        const result = await respuestaHTTP.text();
+        console.log(result);
         searchDocuments(postData.id);
     } else {
         const formdata = new FormData();
@@ -222,6 +224,8 @@ async function createDocument(postData) {
             method: 'POST',
             body: formdata
         });
+        const result = respuestaHTTP.text();
+        console.log(result);
         idVacio();
         searchDocuments(postData.id);
     }

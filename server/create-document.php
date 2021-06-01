@@ -7,7 +7,7 @@
         $nombre =$_POST['nombre'];
         $contenido =$_POST['contenido'];
         $tipo="Docuemtno de texto";
-        $fecha =$_POST['fecha'];
+        //$fecha =$_POST['fecha'];
         $carpeta =$_POST['carpeta'];
         $id = $_POST['id'];
 
@@ -22,7 +22,7 @@
         $nombre =$_POST['nombre'];
         $contenido =$_POST['contenido'];
         $tipo="Docuemtno de texto";
-        $fecha =$_POST['fecha'];
+        //$fecha =$_POST['fecha'];
         $carpeta =$_POST['carpeta'];
     
         $insertQuery = "INSERT INTO archivo (nombre, contenido, tipo, fecha, carpeta) values('$nombre', '$contenido', '$tipo', NOW() ,'$carpeta')";
